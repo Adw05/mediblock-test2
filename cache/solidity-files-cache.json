@@ -1,0 +1,41 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "D:\\programming\\Blockchain\\test2\\project\\contracts\\PatientRecords.sol": {
+      "lastModificationDate": 1746698961859,
+      "contentHash": "bbf2a1dfb2aaf2bfa22beb56a112ea44",
+      "sourceName": "contracts/PatientRecords.sol",
+      "solcConfig": {
+        "version": "0.8.21",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.21"
+      ],
+      "artifacts": [
+        "PatientRecords"
+      ]
+    }
+  }
+}
