@@ -10,7 +10,7 @@ export const addPatientRecord = async (patient: PatientRecord): Promise<Blockcha
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        assetId: patient.id,
+        id: patient.id, // Changed from assetId to id
         value: {
           name: patient.name,
           diagnosis: patient.diagnosis,
@@ -23,7 +23,7 @@ export const addPatientRecord = async (patient: PatientRecord): Promise<Blockcha
 
     return {
       success: response.ok,
-      message: data.message,
+      message: data.message || 'Patient record added successfully',
       data: patient
     };
   } catch (error) {
@@ -36,25 +36,26 @@ export const addPatientRecord = async (patient: PatientRecord): Promise<Blockcha
 
 export const queryPatientRecord = async (patientId: string): Promise<BlockchainResponse> => {
   try {
-    const response = await fetch(`${API_BASE_URL}/assets/${patientId}`);
+    const response = await fetch(`${API_BASE_URL}/assets`);
     const data = await response.json();
 
-    if (!response.ok) {
+    const patient = data.find((item: any) => item.id === patientId);
+    
+    if (!patient) {
       return {
         success: false,
-        message: data.message || `No patient found with ID ${patientId}`
+        message: `No patient found with ID ${patientId}`
       };
     }
 
-    const patientData = data.data;
     return {
       success: true,
       message: 'Patient record found',
       data: {
         id: patientId,
-        name: patientData.value.name,
-        diagnosis: patientData.value.diagnosis,
-        timestamp: patientData.value.timestamp
+        name: patient.value.name,
+        diagnosis: patient.value.diagnosis,
+        timestamp: patient.value.timestamp
       }
     };
   } catch (error) {
